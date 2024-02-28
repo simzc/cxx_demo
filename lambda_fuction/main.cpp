@@ -1,0 +1,22 @@
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+int main(int argc, const char** argv) {
+    std::vector<int> test;
+
+    size_t size = 10;
+    for (size_t i = 0; i < size; i++) {
+        test.push_back(i);
+    }
+
+    auto f = [](auto a, auto b) { return a > b; };
+
+    std::sort(test.begin(), test.end(), f);
+
+    for (const auto& val : test) {
+        std::cout << val << std::endl;
+    }
+
+    return 0;
+}
