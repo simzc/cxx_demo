@@ -1,4 +1,4 @@
-set(target_name "lambda_fuction")
+set(target_name "variant_test")
 
 add_executable(${target_name} main.cpp)
 
