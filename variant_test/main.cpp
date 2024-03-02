@@ -32,7 +32,6 @@ struct Square {
 /// @brief Fuctor for std::visitor
 struct Visitor_void {
 #if 0
-    
     /// @brief Int type
     /// @param i Input value
     void operator()(int i) const { std::cout << "int value: " << i << std::endl; }
@@ -44,14 +43,15 @@ struct Visitor_void {
     /// @brief String type
     /// @param i Input value
     void operator()(std::string i) const { std::cout << "string value: " << i << std::endl; }
+#endif  // end if macro
 
-    // Approach for C++20 
+    // Approach for C++20
     void operator()(auto&& args) const {
         std::cout << "Args :" << args << std::endl;
 
         // Remove the reference property
         using type = std::decay_t<decltype(args)>;
-        
+
         // Int type
         if constexpr (std::is_same_v<type, int>) {
             std::cout << "Int type: " << args << std::endl;
@@ -67,8 +67,8 @@ struct Visitor_void {
             std::cout << "String type: " << args << std::endl;
         }
     }
-#endif  // end if macro
 
+#if 0
     // Approach for C++17
     template <typename Type>
     void operator()(Type&& args) const {
@@ -90,6 +90,7 @@ struct Visitor_void {
             std::cout << "String type: " << args << std::endl;
         }
     }
+#endif // end if macro
 };
 
 /// @struct Visitor with area return type
