@@ -1,0 +1,5 @@
+add_subdirectory(decay_type)
+add_subdirectory(is_same)
+add_subdirectory(source_location)
+add_subdirectory(typeinfo_test)
+add_subdirectory(variant_test)

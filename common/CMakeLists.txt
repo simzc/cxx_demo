@@ -1,0 +1,2 @@
+add_subdirectory(functor_test)
+add_subdirectory(lambda_fuction)
