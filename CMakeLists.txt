@@ -26,6 +26,7 @@ set(demo_cxx_std "cxx_std_20")
 
 # Demo run on the host
 add_subdirectory(common)
+add_subdirectory(generic_programming)
 add_subdirectory(stl)
 
 # Demo run on device
