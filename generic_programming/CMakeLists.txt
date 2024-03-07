@@ -1,1 +1,2 @@
+add_subdirectory(class_template)
 add_subdirectory(template_base)

@@ -1,4 +1,4 @@
-set(target_name "functor_test")
+set(target_name "class_template")
 
 message(STATUS "added demo ${target_name}.")
 
@@ -6,4 +6,3 @@ add_executable(${target_name} main.cpp)
 
 set_target_properties(${target_name} PROPERTIES CXX_STANDARD ${DEMO_CXX_STD})
 set_target_properties(${target_name} PROPERTIES CXX_STANDARD_REQUIRED ON)
-

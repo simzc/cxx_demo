@@ -17,12 +17,9 @@ if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
     message(STATUS "CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES is : ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}.")
 endif(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
 
-
-# Set C++ standard to C++20
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-set(demo_cxx_std "cxx_std_20")
+# Set CXX standard
+set(DEMO_CXX_STD "20")
+message(STATUS "DEMO_CXX_STD is: ${DEMO_CXX_STD}.")
 
 # Demo run on the host
 add_subdirectory(common)
