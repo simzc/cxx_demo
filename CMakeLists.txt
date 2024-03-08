@@ -2,11 +2,9 @@ cmake_minimum_required(VERSION 3.25.0 FATAL_ERROR)
 
 project(demo LANGUAGES CXX)
 
-# CUDA is not enabled on MacOS
-set(enable_cuda OFF)
-if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
+option(enable_cuda "Enabale cuda environment." OFF)
+if(enable_cuda)
     enable_language(CUDA)
-    set(enable_cuda ON)
     message(STATUS "CUDA support is enabled.")
 
     # Find CUDA toolkit
@@ -15,7 +13,7 @@ if(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
     # Global fix for CUDA language bug
     include_directories(${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
     message(STATUS "CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES is : ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}.")
-endif(NOT CMAKE_SYSTEM_NAME MATCHES "Darwin")
+endif(enable_cuda)
 
 # Set CXX standard
 set(DEMO_CXX_STD "20")
