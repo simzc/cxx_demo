@@ -1,2 +1,3 @@
 add_subdirectory(class_template)
 add_subdirectory(template_base)
+add_subdirectory(unique_ptr)

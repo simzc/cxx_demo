@@ -3,6 +3,17 @@
 template <typename Type, size_t N>
 class Array {
   public:
+    /// @brief Default constructor
+    Array() = default;
+
+    /// @brief Constructor with initial value
+    /// @param val Filled value
+    Array(Type val) {
+        for (size_t i = 0; i < N; i++) {
+            m_val[i] = val;
+        }
+    }
+
     /// @brief Get the value by index
     /// @param num Index
     /// @return Value
@@ -21,15 +32,24 @@ class Array {
 };
 
 int main(int argc, const char** argv) {
-    Array<int, 10> array;
-    for (size_t i = 0; i < array.size(); i++) {
-        array[i] = i;
+    Array<int, 10> array_a;
+    for (size_t i = 0; i < array_a.size(); i++) {
+        array_a[i] = i;
     }
 
-    std::cout << "The size of array is: " << array.size() << std::endl;
+    std::cout << "The size of array is: " << array_a.size() << std::endl;
 
-    for (size_t i = 0; i < array.size(); i++) {
-        std::cout << "array[" << i << "] is: " << array[i] << std::endl;
+    for (size_t i = 0; i < array_a.size(); i++) {
+        std::cout << "array[" << i << "] is: " << array_a[i] << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    Array<int, 10> array_b(10);
+    std::cout << "The size of array is: " << array_b.size() << std::endl;
+
+    for (size_t i = 0; i < array_b.size(); i++) {
+        std::cout << "array[" << i << "] is: " << array_b[i] << std::endl;
     }
 
     return 0;
