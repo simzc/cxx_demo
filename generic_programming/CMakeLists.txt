@@ -1,3 +1,4 @@
+add_subdirectory(any_object)
 add_subdirectory(class_template)
 add_subdirectory(template_base)
 add_subdirectory(unique_ptr)
