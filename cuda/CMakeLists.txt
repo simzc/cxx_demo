@@ -1,1 +1,2 @@
 add_subdirectory(cuda_helloworld)
+add_subdirectory(double2_test)
