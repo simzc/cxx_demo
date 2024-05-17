@@ -8,7 +8,7 @@ class Array {
 
     /// @brief Constructor with initial value
     /// @param val Filled value
-    Array(Type val) {
+    explicit Array(Type val) {
         for (size_t i = 0; i < N; i++) {
             m_val[i] = val;
         }
@@ -21,7 +21,7 @@ class Array {
         if (num < N) {
             return m_val[num];
         }
-        throw "Out of the range.";
+        throw R"(Out of the range.)";
     }
 
     /// @brief Get the size of array
@@ -32,7 +32,7 @@ class Array {
 };
 
 int main(int argc, const char** argv) {
-    Array<int, 10> array_a;
+    Array<int, 10> array_a{};
     for (size_t i = 0; i < array_a.size(); i++) {
         array_a[i] = i;
     }

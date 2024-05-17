@@ -11,7 +11,7 @@ class UniquePtr {
     UniquePtr() : m_ptr(nullptr) { std::cout << "Default constructor invoked." << std::endl; }
 
     /// @brief Constructor with initial pointer
-    UniquePtr(Type* ptr) : m_ptr(ptr) { std::cout << "Constructor invoked." << std::endl; }
+    explicit UniquePtr(Type* ptr) : m_ptr(ptr) { std::cout << "Constructor invoked." << std::endl; }
 
     /// @brief Deleted copy constructor
     UniquePtr(const UniquePtr&) = delete;
@@ -60,15 +60,15 @@ class UniquePtr {
     Type* m_ptr;
 };
 
-/// @class 
-/// @brief 
+/// @class
+/// @brief
 class Any {
   public:
-    /// @brief 
-    /// @tparam Type 
-    /// @param val 
+    /// @brief
+    /// @tparam Type
+    /// @param val
     template <typename Type>
-    Any(Type val) : m_value(new ValueHolder<Type>(val)) {}
+    explicit Any(Type val) : m_value(new ValueHolder<Type>(val)) {}
 
     /// @brief Copy constructor
     Any(const Any& src) { *this = src; }
@@ -78,11 +78,11 @@ class Any {
         this->m_value = src.m_value->Clone();
         return *this;
     }
-    
-    /// @brief Destructor
-    ~Any() {}
 
-    template<typename Type> 
+    /// @brief Destructor
+    ~Any() = default;
+
+    template <typename Type>
     Type& GetValue() const {
         if (auto ptr = dynamic_cast<ValueHolder<Type>*>(m_value.Get())) {
             return ptr->m_data;
@@ -103,11 +103,14 @@ class Any {
     struct ValueHolder : public Value {
         /// @brief Constructor
         /// @param data Initial value
-        ValueHolder(Type data) : m_data(data) {}
+        explicit ValueHolder(Type data) : m_data(data) {}
 
         /// @brief Clone function
         /// @return Covariant type
-        virtual UniquePtr<Value> Clone() override { return new ValueHolder<Type>(m_data); }
+        UniquePtr<Value> Clone() override { return new ValueHolder<Type>(m_data); }
+
+        /// @brief  Destructor
+        ~ValueHolder() override = default;
 
         Type m_data;
     };
@@ -121,13 +124,11 @@ int main(int argc, const char** argv) {
     try {
         auto value_int = any.GetValue<int>();
         std::cout << "value_int: " << value_int << std::endl;
-        
+
         any = "abc";
         auto value_chars = any.GetValue<const char*>();
         std::cout << "value_chars: " << value_chars << std::endl;
-    }
-    catch(...) {
-
+    } catch (...) {
     }
     return 0;
 }

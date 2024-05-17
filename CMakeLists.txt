@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25.0 FATAL_ERROR)
 
 project(demo LANGUAGES CXX)
 
-option(enable_cuda "Enabale cuda environment." OFF)
+option(enable_cuda "Enable cuda environment." ON)
 if(enable_cuda)
     enable_language(CUDA)
     message(STATUS "CUDA support is enabled.")

@@ -1,5 +1,4 @@
 #include <iostream>
-#include "vector_types.h"
 
 __global__ void HelloWorldCuk() {
     printf("Hello World on device!\n");
@@ -10,6 +9,6 @@ int main(int argc, const char** argv) {
     HelloWorldCuk<<<1, 1>>>();
 
     cudaDeviceSynchronize();
-    
+
     return 0;
 }

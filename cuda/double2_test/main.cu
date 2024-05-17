@@ -14,8 +14,7 @@ int main(int argc, const char** argv) {
         var = make_double2(1.0, 2.0);
     }
 
-    std::vector<double2> test_b;
-    test_b = test_a;
+    std::vector<double2> test_b = test_a;
 
     for (auto& var : test_b) {
         std::cout << "var.x: " << var.x << "\t"

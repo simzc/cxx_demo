@@ -3,16 +3,16 @@
 #include <algorithm>
 
 int main(int argc, const char** argv) {
-    std::vector<int> test;
+    std::vector<size_t> test;
 
-    size_t size = 10;
+    constexpr size_t size = 10;
     for (size_t i = 0; i < size; i++) {
         test.push_back(i);
     }
 
     auto f = [](auto a, auto b) { return a > b; };
 
-    std::sort(test.begin(), test.end(), f);
+    std::ranges::sort(test, f);
 
     for (const auto& val : test) {
         std::cout << val << std::endl;
