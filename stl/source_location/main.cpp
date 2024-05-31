@@ -1,9 +1,19 @@
 #include <iostream>
-#include <source_location>
+
+#if __linux__
+    #include <experimental/source_location>
+#else
+    #include <source_location>
+#endif
 
 int main(int argc, const char** argv) {
     // Location info
-    const std::source_location& location = std::source_location::current();
+    #if __linux__
+        const std::experimental::source_location& location = std::experimental::source_location::current();
+    #else
+        const std::source_location& location = std::source_location::current();
+    #endif
+    
 
     // clang-format off
     std::cout << "Information of current location: "        << std::endl

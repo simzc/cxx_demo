@@ -11,7 +11,7 @@ class UniquePtr {
     UniquePtr() : m_ptr(nullptr) { std::cout << "Default constructor invoked." << std::endl; }
 
     /// @brief Constructor with initial pointer
-    explicit UniquePtr(Type* ptr) : m_ptr(ptr) { std::cout << "Constructor invoked." << std::endl; }
+    UniquePtr(Type* ptr) : m_ptr(ptr) { std::cout << "Constructor invoked." << std::endl; }
 
     /// @brief Deleted copy constructor
     UniquePtr(const UniquePtr&) = delete;
@@ -68,7 +68,7 @@ class Any {
     /// @tparam Type
     /// @param val
     template <typename Type>
-    explicit Any(Type val) : m_value(new ValueHolder<Type>(val)) {}
+    Any(Type val) : m_value(new ValueHolder<Type>(val)) {}
 
     /// @brief Copy constructor
     Any(const Any& src) { *this = src; }
@@ -103,7 +103,7 @@ class Any {
     struct ValueHolder : public Value {
         /// @brief Constructor
         /// @param data Initial value
-        explicit ValueHolder(Type data) : m_data(data) {}
+        ValueHolder(Type data) : m_data(data) {}
 
         /// @brief Clone function
         /// @return Covariant type

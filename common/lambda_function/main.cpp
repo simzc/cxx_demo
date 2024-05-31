@@ -12,7 +12,7 @@ int main(int argc, const char** argv) {
 
     auto f = [](auto a, auto b) { return a > b; };
 
-    std::ranges::sort(test, f);
+    std::sort(test.begin(), test.end(), f);
 
     for (const auto& val : test) {
         std::cout << val << std::endl;

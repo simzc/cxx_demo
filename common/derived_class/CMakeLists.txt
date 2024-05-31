@@ -1,8 +1,19 @@
-set(target_name "derived_class")
+SET(CMAKE_VERBOSE_MAKEFILE ON)
 
-message(STATUS "added demo ${target_name}.")
+STRING(REGEX REPLACE ".*/(.*)" "\\1" CURRENT_FOLDER ${CMAKE_CURRENT_SOURCE_DIR})
+PROJECT("${CURRENT_FOLDER}")
 
-add_executable(${target_name} main.cpp)
+aux_source_directory(. DIR_SRCS)
+add_executable(${PROJECT_NAME} ${DIR_SRCS})
 
-set_target_properties(${target_name} PROPERTIES CXX_STANDARD ${DEMO_CXX_STD})
-set_target_properties(${target_name} PROPERTIES CXX_STANDARD_REQUIRED ON)
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+set_target_properties(${PROJECT_NAME} PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${EXECUTABLE_OUTPUT_PATH}")
+
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD ${DEMO_CXX_STD})
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD_REQUIRED ON)
+
+target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${DEMO_CXX_FLAGS}>)
+
+if (enable_cuda)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:${DEMO_CUDA_FLAGS}>)
+endif ()

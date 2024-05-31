@@ -1,7 +1,10 @@
 #include <iostream>
 
 __global__ void HelloWorldCuk() {
-    printf("Hello World on device!\n");
+    unsigned int tid = threadIdx.x + blockDim.x * blockIdx.x;
+    if (tid == 0) {
+        printf("Hello World on device!\n");
+    }
 }
 
 int main(int argc, const char** argv) {
