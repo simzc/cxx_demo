@@ -26,7 +26,7 @@ endif ()
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(Common)
 
-option(enable_cuda "Enable cuda environment." ON)
+option(enable_cuda "Enable cuda environment." OFF)
 if (enable_cuda)
     enable_language(CUDA)
     message(STATUS "CUDA support is enabled.")
